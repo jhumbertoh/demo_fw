@@ -1,11 +1,13 @@
 import unittest
 from datetime import datetime
-import HTMLTestRunner
+
 #custom imports
 import sys,site
 site.addsitedir(sys.path[0]+'\\pages')
 from basetest import BaseTest
 import cotizador_page as cotizadorpage
+site.addsitedir(sys.path[0]+'\\pages')
+import HTMLTestRunner
 
 class CotizadorTests(BaseTest):
 
