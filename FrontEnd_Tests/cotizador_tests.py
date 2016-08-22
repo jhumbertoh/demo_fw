@@ -15,6 +15,8 @@ class CotizadorTests(BaseTest):
         cotizador.input_brand(brand)
         assert cotizador.models_loaded(), "Los modelos no se cargaron para la marca> %s" % brand
 
+
+
 if __name__ == "__main__":
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(CotizadorTests))
