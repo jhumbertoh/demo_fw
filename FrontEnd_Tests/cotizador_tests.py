@@ -3,11 +3,9 @@ from datetime import datetime
 
 #custom imports
 import sys,site
-site.addsitedir(sys.path[0]+'\\pages')
 from basetest import BaseTest
-import cotizador_page as cotizadorpage
-site.addsitedir(sys.path[0]+'\\pages')
-import HTMLTestRunner
+from pages import cotizador_page as cotizadorpage
+from utils import HTMLTestRunner
 
 class CotizadorTests(BaseTest):
 
@@ -16,6 +14,19 @@ class CotizadorTests(BaseTest):
         brand = "Daewoo"
         cotizador.input_brand(brand)
         assert cotizador.models_loaded(), "Los modelos no se cargaron para la marca> %s" % brand
+
+    def test_solicitar_cotizacion_email_invalido(self):
+        cotizador = cotizadorpage.CotizadorPage(self.driver)
+        brand = "Hyundai"
+        model = "Accent 1.4 GL Sedan"
+        email = "mail4tests"
+        telefono = '997874529'
+        cotizador.input_brand(brand)
+        cotizador.input_model(model)
+        cotizador.input_telefono(telefono)
+        cotizador.input_email(email)
+        cotizador.input_quotation()
+        assert cotizador.error_message_displayed(), "Se esperaba mensaje de error"
 
 
 
